@@ -1,0 +1,21 @@
+{
+  "icon" : "icon.png",
+  "subType" : "customapp",
+  "description" : "LoansOrigination1",
+  "version" : "1.0",
+  "intSvcs" : [ {
+    "name" : "CreditBureauMock1",
+    "version" : "1.0",
+    "etag" : "2c059546-9a6a-455b-bc59-fb556598d200"
+  } ],
+  "objectSvcs" : [ {
+    "name" : "LoansApplicationObjS",
+    "version" : "1.0",
+    "etag" : "5ccb5e25-a446-4c28-a179-44c325be7b48"
+  } ],
+  "rulesSvcs" : [ {
+    "name" : "LoanApprovalRules",
+    "version" : "1.0",
+    "etag" : "fa6da9a8-e342-4b79-a886-82710b9d9534"
+  } ]
+}

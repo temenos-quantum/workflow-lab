@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service serviceGroup="" cachable="false" cacheduration="" description="Returns a made-up credit score for a given personal identification or fiscal number. For the purpose of demos, this operation returns an &quot;excellent&quot; score for even identification numbers, an &quot;good&quot; one for numbers ended in '5', and a &quot;poor&quot; one for all others." endpoint="default" groupType="" id="getScore" passwordencrypted="false" security="authorized_app_user" type="stubConnector" smscode="" smsenabled="false">
+    <service-config>
+        <config-param api-version="" appid="" name="preprocessorname" value=""/>
+        <config-param api-version="" appid="" name="postprocessorname" value=""/>
+        <config-param api-version="" appid="" name="preprocessorJS" value=""/>
+        <config-param api-version="" appid="" name="postprocessorJS" value="var Param = com.konylabs.middleware.dataobject.Param&#10;&#10;function genScore(){&#10;&#10; var id = request.getParameter(&quot;id_number&quot;)&#10; if(typeof id === &quot;undefined&quot; || id.trim() === &quot;&quot;){return}&#10;&#10; var d = id.replace(/\D/g, &quot;&quot;).slice(-1) //Get the last digit.&#10; //300, 600, 700 850&#10; var min, max, grade&#10;&#10; if (d % 2 === 0){&#10;  min = 700&#10;  max = 851&#10;  grade = &quot;excellent&quot;&#10; }&#10; else if (d === &quot;5&quot;){&#10;  min = 600&#10;  max = 700&#10;  grade = &quot;good&quot;&#10; }&#10; else{&#10;  min = 300&#10;  max = 600&#10;  grade = &quot;bad&quot;&#10; }&#10;&#10; result.addParam(new Param(&#10;  &quot;score&quot;,&#10;  Math.floor(Math.random() * (max - min) + min),&#10;  &quot;number&quot;&#10; ))&#10;&#10; result.addParam(new Param(&quot;grade&quot;, grade, &quot;string&quot;))&#10; result.addParam(new Param(&quot;id_number&quot;, id, &quot;string&quot;))&#10;}&#10;&#10;genScore()&#10;"/>
+        <config-param api-version="" appid="" name="preprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="postprocessorRules" value=""/>
+        <config-param api-version="" appid="" name="kony_http_supported_methods" value="POST"/>
+        <config-param api-version="" appid="" name="endpointUrl" value=""/>
+        <config-param api-version="" appid="" name="ignorehttpproxy" value="true"/>
+        <config-param api-version="" appid="" name="http.method" value="GET"/>
+        <config-param api-version="" appid="" name="dataObjectName" value=""/>
+        <config-param api-version="" appid="" name="sockettimeout" value=""/>
+        <config-param api-version="" appid="" name="responseEncoding" value="UTF-8"/>
+        <config-param api-version="" appid="" name="isembedxmlpresent" value="false"/>
+        <config-param api-version="" appid="" name="retrycount" value="0"/>
+    </service-config>
+    <service-input passthrough="false">
+        <header datatype="" name="" passthrough="false"/>
+        <param datatype="string" defaultvalue="" description="SSN, DNI or any other national identification number. Even numbers will get an excellent score, numbers ended in 5 will get good one, and all others will get a bad one." encode="true" format="None" formatvalue="" name="id_number" order="" paramOrder="1" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="51225065v" value="">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id_type" order="" paramOrder="2" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="Identity Card" value="">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="id_country" order="" paramOrder="3" parentOrder="-1" passnull="false" sms-name="" src="request" sourcevalue="" srcformatvalue="" target="request" targetdatatype="java.lang.String" testvalue="Switzerland" value="">
+            <accessType></accessType>
+        </param>
+        <stub-param value="{&#10; &quot;score&quot;: 0,&#10; &quot;last_arrears&quot;: &quot;{{date('01-01-2014 12:00:00', '01-01-2016 12:00:00', 'yyyy-MM-dd')}}&quot;,&#10; &quot;black_listed&quot;: false,&#10; &quot;money_launder&quot;: false,&#10; &quot;notes&quot;: &quot;{{lorem(30, 'words')}}&quot;&#10;}"/>
+    </service-input>
+    <service-output passthrough="false">
+        <param datatype="number" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="score" order="" paramOrder="1" parentOrder="0" passnull="false" sms-name="" src="$.score" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="">
+            <accessType></accessType>
+        </param>
+        <param datatype="string" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="last_arrears" order="" paramOrder="2" parentOrder="0" passnull="false" sms-name="" src="$.last_arrears" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="">
+            <accessType></accessType>
+        </param>
+        <param datatype="boolean" defaultvalue="" description="" encode="true" format="None" formatvalue="" name="black_listed" order="" paramOrder="3" parentOrder="0" passnull="false" sms-name="" src="$.black_listed" sourcevalue="" srcformatvalue="" target="response" targetdatatype="java.lang.String" testvalue="" value="">
+            <accessType></accessType>
+        </param>
+    </service-output>
+</service>

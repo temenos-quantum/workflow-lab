@@ -1,0 +1,4 @@
+ALTER TABLE `ApplicationModel`
+	DROP COLUMN `seqNo`,
+	DROP PRIMARY KEY,
+	ADD PRIMARY KEY(`id`);

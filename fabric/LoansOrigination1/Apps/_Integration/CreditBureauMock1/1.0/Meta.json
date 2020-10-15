@@ -1,0 +1,4 @@
+{
+  "serviceType" : "integration",
+  "description" : "A mock service that pretends to be a Credit Bureau."
+}
