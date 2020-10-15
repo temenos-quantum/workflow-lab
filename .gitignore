@@ -1,0 +1,4 @@
+# Avoid versioning Fabric exports in zip format.
+*.zip
+*.icloud
+~$*

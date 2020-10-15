@@ -1,0 +1,7 @@
+{
+	"score": 0,
+	"last_arrears": "{{date('01-01-2014 12:00:00', '01-01-2016 12:00:00', 'yyyy-MM-dd')}}",
+	"black_listed": false,
+	"money_launder": false,
+	"notes": "{{lorem(30, 'words')}}"
+}

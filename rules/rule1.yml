@@ -1,0 +1,15 @@
+---
+name: Poor
+condition: score < 600
+actions:
+- results.addParam("decision", "Rejected")
+---
+name: Good
+condition: score >= 600 && score <= 699
+actions:
+- results.addParam("decision", "Review")
+---
+name: Excellent
+condition: score >= 700
+actions:
+- results.addParam("decision", "Approved")
